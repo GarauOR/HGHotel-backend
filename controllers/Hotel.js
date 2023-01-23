@@ -1,11 +1,16 @@
 "use strict";
 
 const axios = require("axios");
-// const roomModel = require("../models/Hotel");
+const roomModel = require("../models/Hotel");
 const API_KEY = process.env.API_KEY;
 
 function homeHandler(req, res) {
   res.status(200).send("BASE URL");
+}
+
+async function getRoomsHandler(req, res) {
+  let allRoomsData = await roomModel.find({});
+  res.status(200).send(allRoomsData);
 }
 
 async function getWeatherHandler(req, res) {
@@ -18,4 +23,5 @@ async function getWeatherHandler(req, res) {
 module.exports = {
   homeHandler,
   getWeatherHandler,
+  getRoomsHandler,
 };
