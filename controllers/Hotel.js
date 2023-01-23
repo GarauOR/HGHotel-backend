@@ -20,8 +20,47 @@ async function getWeatherHandler(req, res) {
   res.status(200).send(weatherRes.data);
 }
 
+async function delRoomHandler(req, res) {
+  const { id } = req.params;
+  await roomModel.findByIdAndDelete(id);
+
+  let allRooms = await makeupModel.find({});
+  res.status(200).send(allRooms);
+}
+
+async function updRoomHandler(req, res) {
+  const { id } = req.params;
+  const { name, brand, price, imageUrl, description } = req.body;
+  await makeupModel.findByIdAndUpdate(id, {
+    number,
+    description,
+    price,
+    dates,
+  });
+
+  let allRooms = await roomModel.find({});
+  res.status(200).send(allRooms);
+}
+
+// Date input yyyy-mm-dd
+async function addRoomHandler(req, res) {
+  let { number, description, price, dates } = req.body;
+  await roomModel.create({
+    number,
+    description,
+    price,
+    dates,
+  });
+
+  let allRooms = await roomModel.find({});
+  res.status(200).send(allRooms);
+}
+
 module.exports = {
   homeHandler,
   getWeatherHandler,
   getRoomsHandler,
+  delRoomHandler,
+  updRoomHandler,
+  addRoomHandler,
 };
