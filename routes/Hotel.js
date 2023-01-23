@@ -5,7 +5,7 @@ const HGRouter = express.Router();
 const HGHandlers = require('../controllers/Hotel');
 
 HGRouter.get("/", HGHandlers.homeHandler);
-// HGRouter.get("/product", HGHandlers.favProdsHandler);
+HGRouter.get("/weather", HGHandlers.getWeatherHandler);
 // HGRouter.get("/prodlist", HGHandlers.prodListHandler);
 // HGRouter.get("/productbybrand", HGHandlers.prodByBrandHandler);
 // HGRouter.post("/product", HGHandlers.addProdHandler);
