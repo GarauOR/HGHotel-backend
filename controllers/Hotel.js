@@ -30,7 +30,7 @@ async function delRoomHandler(req, res) {
 
 async function updRoomHandler(req, res) {
   const { id } = req.params;
-  const { name, brand, price, imageUrl, description } = req.body;
+  const { number, description, price, dates } = req.body;
   await makeupModel.findByIdAndUpdate(id, {
     number,
     description,
