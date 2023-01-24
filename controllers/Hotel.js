@@ -42,9 +42,25 @@ async function updRoomHandler(req, res) {
   res.status(200).send(allRooms);
 }
 
-// Date input yyyy-mm-dd
 async function addRoomHandler(req, res) {
-  let { number, description, price, dates } = req.body;
+  let dates = [];
+
+  const startDate = new Date("2023-02-01");
+  const endDate = new Date("2023-02-28");
+
+  const loadDates = (start,end)=> {
+    let dateLoader = new Date(start);
+
+    while (dateLoader <= end) {
+      let sliceDate = new Date(dateLoader).toISOString().slice(0,10);
+      dates.push({date:sliceDate, isBooked:false});
+      dateLoader.setDate(dateLoader.getDate()+1);
+    }
+  };
+
+  loadDates(startDate,endDate);
+
+  let { number, description, price } = req.body;
   await roomModel.create({
     number,
     description,
