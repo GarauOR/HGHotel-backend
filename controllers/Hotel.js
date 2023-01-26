@@ -24,20 +24,17 @@ async function delRoomHandler(req, res) {
   const { id } = req.params;
   await roomModel.findByIdAndDelete(id);
 
-  let allRooms = await makeupModel.find({});
+  let allRooms = await roomModel.find({});
   res.status(200).send(allRooms);
 }
 
 async function updRoomHandler(req, res) {
   const { id } = req.params;
-  const { number, description, price, dates } = req.body;
-  await makeupModel.findByIdAndUpdate(id, {
-    number,
-    description,
-    price,
-    dates,
-  });
+  const dates = req.body;
 
+  await roomModel.findByIdAndUpdate(id, {
+    dates
+  });
   let allRooms = await roomModel.find({});
   res.status(200).send(allRooms);
 }
