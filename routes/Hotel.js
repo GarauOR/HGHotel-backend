@@ -5,11 +5,13 @@ const HGRouter = express.Router();
 const HGHandlers = require('../controllers/Hotel');
 
 HGRouter.get("/", HGHandlers.homeHandler);
-// HGRouter.get("/product", HGHandlers.favProdsHandler);
-// HGRouter.get("/prodlist", HGHandlers.prodListHandler);
-// HGRouter.get("/productbybrand", HGHandlers.prodByBrandHandler);
-// HGRouter.post("/product", HGHandlers.addProdHandler);
-// HGRouter.delete("/product/:id", HGHandlers.delProdHandler);
-// HGRouter.put("/product/:id", HGHandlers.updProdHandler);
-
+HGRouter.get("/weather", HGHandlers.getWeatherHandler);
+HGRouter.get("/room", HGHandlers.getRoomsHandler);
+HGRouter.post("/room", HGHandlers.addRoomHandler);
+HGRouter.delete("/room/:id", HGHandlers.delRoomHandler);
+HGRouter.put("/room/:id", HGHandlers.updRoomHandler);
+HGRouter.put("/adminroom/:id", HGHandlers.adminUpdRoomHandler);
+HGRouter.get("/booking", HGHandlers.getBookingHandler);
+HGRouter.post("/booking", HGHandlers.addBookingHandler);
+HGRouter.delete("/booking/:id", HGHandlers.delBookingHandler);
 module.exports = HGRouter; 
