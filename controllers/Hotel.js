@@ -54,8 +54,8 @@ async function adminUpdRoomHandler(req, res) {
 async function addRoomHandler(req, res) {
   let dates = [];
 
-  const startDate = new Date("2023-02-01");
-  const endDate = new Date("2023-02-28");
+  const startDate = new Date("2023-01-01");
+  const endDate = new Date("2025-12-31");
 
   const loadDates = (start,end)=> {
     let dateLoader = new Date(start);
@@ -63,6 +63,7 @@ async function addRoomHandler(req, res) {
     while (dateLoader <= end) {
       let sliceDate = new Date(dateLoader).toISOString().slice(0,10);
       dates.push({date:sliceDate, isBooked:false});
+      
       dateLoader.setDate(dateLoader.getDate()+1);
     }
   };
